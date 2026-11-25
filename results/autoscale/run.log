@@ -1,0 +1,4 @@
+16:34:30 phase 1: 10 req/s for 120 s
+16:36:31 phase 2: 100 req/s for 300 s
+16:41:30 phase 3: 10 req/s for 180 s
+16:44:32 autoscaling test finished

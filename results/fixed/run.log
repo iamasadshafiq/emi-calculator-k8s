@@ -1,0 +1,73 @@
+15:54:45 ===== 1 replica(s) =====
+deployment.apps/emi-web scaled
+deployment "emi-web" successfully rolled out
+15:57:08 run r1_rate10
+Reply time [ms]: response 186.8 transfer 3.4
+Reply status: 1xx=0 2xx=600 3xx=0 4xx=0 5xx=0
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+15:59:09 run r1_rate25
+Reply time [ms]: response 2649.8 transfer 60.9
+Reply status: 1xx=0 2xx=444 3xx=0 4xx=0 5xx=0
+Errors: total 1056 client-timo 1056 socket-timo 0 connrefused 0 connreset 0
+16:01:15 run r1_rate50
+Reply time [ms]: response 2595.9 transfer 44.0
+Reply status: 1xx=0 2xx=329 3xx=0 4xx=0 5xx=0
+Errors: total 2671 client-timo 2671 socket-timo 0 connrefused 0 connreset 0
+16:03:48 run r1_rate100
+Reply time [ms]: response 2441.0 transfer 61.1
+Reply status: 1xx=0 2xx=133 3xx=0 4xx=0 5xx=0
+Errors: total 5867 client-timo 5867 socket-timo 0 connrefused 0 connreset 0
+16:05:54 run r1_rate200
+Reply time [ms]: response 2867.1 transfer 37.4
+Reply status: 1xx=0 2xx=206 3xx=0 4xx=0 5xx=0
+Errors: total 11794 client-timo 11794 socket-timo 0 connrefused 0 connreset 0
+16:07:59 ===== 2 replica(s) =====
+deployment.apps/emi-web scaled
+Waiting for deployment "emi-web" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "emi-web" rollout to finish: 1 of 2 updated replicas are available...
+deployment "emi-web" successfully rolled out
+16:09:31 run r2_rate10
+Reply time [ms]: response 82.6 transfer 0.4
+Reply status: 1xx=0 2xx=600 3xx=0 4xx=0 5xx=0
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+16:11:32 run r2_rate25
+Reply time [ms]: response 247.5 transfer 3.9
+Reply status: 1xx=0 2xx=1499 3xx=0 4xx=0 5xx=1
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+16:13:34 run r2_rate50
+Reply time [ms]: response 2560.4 transfer 42.8
+Reply status: 1xx=0 2xx=645 3xx=0 4xx=0 5xx=0
+Errors: total 2355 client-timo 2355 socket-timo 0 connrefused 0 connreset 0
+16:16:01 run r2_rate100
+Reply time [ms]: response 2893.0 transfer 38.8
+Reply status: 1xx=0 2xx=265 3xx=0 4xx=0 5xx=0
+Errors: total 5735 client-timo 5735 socket-timo 0 connrefused 0 connreset 0
+16:18:06 run r2_rate200
+Reply time [ms]: response 2848.9 transfer 23.3
+Reply status: 1xx=0 2xx=159 3xx=0 4xx=0 5xx=0
+Errors: total 11841 client-timo 11841 socket-timo 0 connrefused 0 connreset 0
+16:20:11 ===== 3 replica(s) =====
+deployment.apps/emi-web scaled
+Waiting for deployment "emi-web" rollout to finish: 2 of 3 updated replicas are available...
+deployment "emi-web" successfully rolled out
+16:21:53 run r3_rate10
+Reply time [ms]: response 153.5 transfer 1.7
+Reply status: 1xx=0 2xx=600 3xx=0 4xx=0 5xx=0
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+16:23:55 run r3_rate25
+Reply time [ms]: response 486.4 transfer 4.9
+Reply status: 1xx=0 2xx=1499 3xx=0 4xx=0 5xx=1
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+16:25:58 run r3_rate50
+Reply time [ms]: response 2521.0 transfer 26.9
+Reply status: 1xx=0 2xx=398 3xx=0 4xx=0 5xx=1
+Errors: total 2601 client-timo 2601 socket-timo 0 connrefused 0 connreset 0
+16:28:03 run r3_rate100
+Reply time [ms]: response 2711.1 transfer 29.7
+Reply status: 1xx=0 2xx=381 3xx=0 4xx=0 5xx=0
+Errors: total 5619 client-timo 5619 socket-timo 0 connrefused 0 connreset 0
+16:30:22 run r3_rate200
+Reply time [ms]: response 3083.5 transfer 3.9
+Reply status: 1xx=0 2xx=176 3xx=0 4xx=0 5xx=0
+Errors: total 11824 client-timo 11824 socket-timo 0 connrefused 0 connreset 0
+16:32:27 all runs finished

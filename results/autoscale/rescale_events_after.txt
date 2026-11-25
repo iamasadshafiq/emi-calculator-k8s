@@ -1,0 +1,6 @@
+LAST SEEN   TYPE     REASON              OBJECT                            MESSAGE
+16m         Normal   SuccessfulRescale   horizontalpodautoscaler/emi-web   New size: 3; reason: cpu resource utilization (percentage of request) above target
+16m         Normal   SuccessfulRescale   horizontalpodautoscaler/emi-web   New size: 4; reason: cpu resource utilization (percentage of request) above target
+14m         Normal   SuccessfulRescale   horizontalpodautoscaler/emi-web   New size: 5; reason: cpu resource utilization (percentage of request) above target
+115s        Normal   SuccessfulRescale   horizontalpodautoscaler/emi-web   New size: 4; reason: All metrics below target
+99s         Normal   SuccessfulRescale   horizontalpodautoscaler/emi-web   New size: 3; reason: All metrics below target
