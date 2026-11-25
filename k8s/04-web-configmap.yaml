@@ -1,0 +1,8 @@
+# The connection string has no credentials, so a ConfigMap is enough.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: emi-web-config
+  namespace: emi
+data:
+  MONGO_URL: "mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo:27017/emidb?replicaSet=rs0"

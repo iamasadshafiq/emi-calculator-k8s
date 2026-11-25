@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emi-web
+  namespace: emi
+  labels:
+    app: emi-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emi-web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1          # start one new pod first ...
+      maxUnavailable: 0    # ... and never go below the wanted number of ready pods
+  template:
+    metadata:
+      labels:
+        app: emi-web
+    spec:
+      terminationGracePeriodSeconds: 40
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+      containers:
+        - name: emi-web
+          image: emi-web:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: emi-web-config
+                  key: MONGO_URL
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 4
+            failureThreshold: 12   # a busy pod stays in the Service; it is removed after 1 minute without an answer
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12   # restart only after 2 minutes without an answer, not when the pod is just busy
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          lifecycle:
+            preStop:
+              exec:
+                # keep serving for a few seconds until the Ingress has removed this pod
+                command: ["sleep", "10"]
