@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loan EMI Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary mb-3">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1">Loan EMI Calculator</span>
+    <span class="navbar-text text-white-50">Flask + MongoDB on Kubernetes</span>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row g-3">
+
+    <!-- input form -->
+    <div class="col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-header fw-semibold">Loan details</div>
+        <div class="card-body">
+          <form id="emi-form" novalidate>
+            <div class="mb-3">
+              <label for="principal" class="form-label">Loan amount (P)</label>
+              <input type="number" class="form-control" id="principal" min="1" step="any" placeholder="e.g. 500000" autofocus>
+              <div class="invalid-feedback">Enter a positive loan amount.</div>
+            </div>
+            <div class="mb-3">
+              <label for="rate" class="form-label">Annual interest rate (%)</label>
+              <input type="number" class="form-control" id="rate" min="0.01" step="any" placeholder="e.g. 12">
+              <div class="invalid-feedback">Enter a positive interest rate.</div>
+            </div>
+            <div class="mb-3">
+              <label for="months" class="form-label">Tenure in months (n)</label>
+              <input type="number" class="form-control" id="months" min="1" step="1" placeholder="e.g. 24">
+              <div class="invalid-feedback">Enter a positive whole number of months.</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" id="btn-calc">Calculate EMI</button>
+          </form>
+          <div class="alert alert-danger mt-3 d-none" id="error-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- result panel -->
+    <div class="col-lg-7">
+      <div class="card shadow-sm h-100">
+        <div class="card-header fw-semibold">Result</div>
+        <div class="card-body" id="result-panel">
+          <p class="text-muted mb-0" id="result-empty">Fill in the form and press Calculate EMI.</p>
+          <div class="d-none" id="result-body">
+            <div class="row text-center mb-3">
+              <div class="col-4">
+                <div class="result-label">Monthly EMI</div>
+                <div class="result-value text-primary" id="res-emi"></div>
+              </div>
+              <div class="col-4">
+                <div class="result-label">Total payment</div>
+                <div class="result-value" id="res-total"></div>
+              </div>
+              <div class="col-4">
+                <div class="result-label">Total interest</div>
+                <div class="result-value" id="res-interest"></div>
+              </div>
+            </div>
+            <table class="table table-sm mb-0">
+              <tr><th class="w-50">Served by pod</th><td id="res-pod"></td></tr>
+              <tr><th>Pod IP address</th><td id="res-ip"></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- history -->
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header fw-semibold">Last 10 calculations (from MongoDB)</div>
+        <div class="table-responsive">
+          <table class="table table-sm table-striped table-hover mb-0">
+            <thead>
+              <tr>
+                <th>#</th><th>Principal</th><th>Rate (%)</th><th>Months</th>
+                <th>EMI</th><th>Served by</th><th>Created at</th>
+              </tr>
+            </thead>
+            <tbody id="history-body">
+              <tr><td colspan="7" class="text-muted">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="text-center text-muted small my-3">
+    DS-584 Cloud Computing &middot; Assignment 4 &middot; Asad Shafiq (MSDSF26A005) &middot; emi-web v{{ version }}
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='vendor/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
