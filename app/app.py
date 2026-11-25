@@ -13,7 +13,7 @@ from pymongo import DESCENDING, MongoClient, ReadPreference
 from pymongo.errors import PyMongoError
 
 # ---------------------------------------------------------------- configuration
-MONGO_URL = os.environ["MONGO_URL"]                 # e.g. mongodb://host:27017/emidb
+MONGO_URL = os.environ["MONGO_URL"]                 # connection string, set from the ConfigMap
 APP_VERSION = os.environ.get("APP_VERSION", "1.0")
 POD_NAME = os.environ.get("HOSTNAME", socket.gethostname())
 
